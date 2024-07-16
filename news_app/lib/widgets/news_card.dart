@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/core/helpers/app_assets.dart';
 import 'package:news_app/core/theme/app_colors.dart';
+import 'package:news_app/model/article_model.dart';
 
 class NewsCard extends StatelessWidget {
-  const NewsCard({super.key});
+  const NewsCard({
+    super.key,
+    required this.articleModel,
+  });
+  final ArticleModel articleModel;
 
   @override
   Widget build(BuildContext context) {
-    return  InkWell(
-      onTap: (){},
-      child: const Card(
+    return InkWell(
+      onTap: () {},
+      child: Card(
         margin: EdgeInsets.only(
           left: 20,
           right: 20,
@@ -24,7 +29,7 @@ class NewsCard extends StatelessWidget {
                 AppAssets.placeholderImage,
               ),
               image: NetworkImage(
-                'https://buffer.com/library/content/images/size/w1200/2023/10/free-images.jpg',
+                articleModel.image,
               ),
               height: 260,
               width: double.infinity,
