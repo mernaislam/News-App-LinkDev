@@ -46,7 +46,7 @@ class NewsCard extends StatelessWidget {
                   Text(
                     'By Livescience.com',
                     style: TextStyle(
-                      color: AppColors.authorColor,
+                      color: AppColors.black54,
                       fontSize: 17,
                     ),
                   ),
@@ -55,7 +55,7 @@ class NewsCard extends StatelessWidget {
                     child: Text(
                       'April 3, 2017',
                       style: TextStyle(
-                        color: AppColors.dateColor,
+                        color: AppColors.black54,
                         fontSize: 15,
                       ),
                     ),
