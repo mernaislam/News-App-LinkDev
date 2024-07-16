@@ -28,8 +28,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
     'E-Magazine': 4
   };
 
-  List<bool> selected = [true, false, false, false, false];
-
+  static List<bool> selected = [true, false, false, false, false];
   @override
   Widget build(BuildContext context) {
     return Drawer(
