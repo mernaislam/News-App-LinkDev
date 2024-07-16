@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:news_app/core/helpers/app_assets.dart';
 import 'package:news_app/core/theme/app_colors.dart';
 import 'package:news_app/model/article_model.dart';
+import 'package:news_app/screens/article_details_screen.dart';
 
 class NewsCard extends StatelessWidget {
   const NewsCard({
@@ -13,9 +14,17 @@ class NewsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => ArticleDetailsScreen(
+              articleModel: articleModel,
+            ),
+          ),
+        );
+      },
       child: Card(
-        margin: EdgeInsets.only(
+        margin: const EdgeInsets.only(
           left: 20,
           right: 20,
           top: 20,
@@ -25,7 +34,7 @@ class NewsCard extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             FadeInImage(
-              placeholder: AssetImage(
+              placeholder: const AssetImage(
                 AppAssets.placeholderImage,
               ),
               image: NetworkImage(
@@ -36,21 +45,23 @@ class NewsCard extends StatelessWidget {
               fit: BoxFit.cover,
             ),
             Padding(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // static data for testing
                   Text(
-                    'Amazing Images: The Best Science Photos of the Week',
-                    style: TextStyle(
+                    articleModel.title,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
                       fontSize: 22,
                       color: AppColors.titleColor,
                     ),
                   ),
                   Text(
-                    'By Livescience.com',
-                    style: TextStyle(
+                    articleModel.author,
+                    style: const TextStyle(
                       color: AppColors.black54,
                       fontSize: 17,
                     ),
@@ -58,8 +69,8 @@ class NewsCard extends StatelessWidget {
                   Align(
                     alignment: Alignment.centerRight,
                     child: Text(
-                      'April 3, 2017',
-                      style: TextStyle(
+                      articleModel.datePublished,
+                      style: const TextStyle(
                         color: AppColors.black54,
                         fontSize: 15,
                       ),

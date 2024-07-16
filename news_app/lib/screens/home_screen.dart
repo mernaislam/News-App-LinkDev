@@ -9,22 +9,19 @@ import 'package:news_app/widgets/news_card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
-
-  static String id = 'homeScreen';
-
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  Future<List<ArticleModel>>? articles;
+  Future<List<ArticleModel>>? _articles;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
 
-    articles = NewsService(Dio()).getNews();
+    _articles = NewsService(Dio()).getNews();
     setState(() {});
   }
 
@@ -35,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: AppColors.grey,
       drawer: const CustomDrawer(),
       body: FutureBuilder(
-        future: articles,
+        future: _articles,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return GridView.builder(

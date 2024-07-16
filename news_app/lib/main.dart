@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/screens/home_screen.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(const NewsApp());
@@ -10,12 +11,15 @@ class NewsApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
+    ]);
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      routes: {
-        HomeScreen.id:(context) => const HomeScreen(),
-      },
-      initialRoute: HomeScreen.id,
+      home: HomeScreen(),
     );
   }
 }

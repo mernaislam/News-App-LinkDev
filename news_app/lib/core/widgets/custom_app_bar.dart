@@ -11,19 +11,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         backgroundColor: AppColors.black,
         foregroundColor: AppColors.white,
         title: const Text('LINK DEVELOPMENT'),
-        leading: Builder( // to change menu size
-          builder: (context) {
-            return IconButton(
-              icon: const Icon(
-                Icons.menu,
-                size: 30, 
-              ),
-              onPressed: () {
-                Scaffold.of(context).openDrawer();
-              },
-            );
-          },
-        ),
         actions: [
           IconButton(
             onPressed: () {},

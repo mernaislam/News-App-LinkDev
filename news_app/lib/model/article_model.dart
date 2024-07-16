@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 class ArticleModel {
   final String image;
   final String author;
@@ -16,13 +18,16 @@ class ArticleModel {
   });
 
   factory ArticleModel.fromJSON(json) {
+    DateTime dateTime = DateTime.parse(json['publishedAt']);
+    DateFormat formatter = DateFormat('MMMM, dd yyyy');
+    String formattedDate = formatter.format(dateTime);
     return ArticleModel(
       image: json['urlToImage'],
       author: json['author'],
       title: json['title'],
       description: json['description'],
       webUrl: json['url'],
-      datePublished: json['publishedAt'],
+      datePublished: formattedDate,
     );
   }
 }

@@ -12,7 +12,7 @@ class CustomDrawer extends StatefulWidget {
 }
 
 class _CustomDrawerState extends State<CustomDrawer> {
-  final Map<String, String> drawerItems = {
+  final Map<String, String> _drawerItems = {
     AppAssets.exploreIcon: 'Explore',
     AppAssets.liveIcon: 'Live Chat',
     AppAssets.galleryIcon: 'Gallery',
@@ -20,7 +20,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
     AppAssets.magazineIcon: 'E-Magazine'
   };
 
-  final Map<String, int> drawerItemIds = {
+  final Map<String, int> _drawerItemIds = {
     'Explore': 0,
     'Live Chat': 1, 
     'Gallery': 2,
@@ -28,7 +28,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
     'E-Magazine': 4
   };
 
-  static List<bool> selected = [true, false, false, false, false];
+  static List<bool> _selected = [true, false, false, false, false];
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -39,17 +39,17 @@ class _CustomDrawerState extends State<CustomDrawer> {
             child: CustomDrawerHeader(),
           ),
           verticalSpace(30),
-          for (var item in drawerItems.entries)
+          for (var item in _drawerItems.entries)
             DrawerItem(
               icon: item.key,
               title: item.value,
-              selected: selected[drawerItemIds[item.value]!],
+              selected: _selected[_drawerItemIds[item.value]!],
               onTap: () {
                 // TODO: push screen and pop drawer
-                for (var i = 0; i < selected.length; i++) {
-                  selected[i] = false;
+                for (var i = 0; i < _selected.length; i++) {
+                  _selected[i] = false;
                 }
-                selected[drawerItemIds[item.value]!] = true;
+                _selected[_drawerItemIds[item.value]!] = true;
                 setState(() {}); 
               },
             ),
