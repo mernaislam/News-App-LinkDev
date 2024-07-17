@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:news_app/core/helpers/spacing.dart';
 import 'package:news_app/core/theme/app_colors.dart';
-import 'package:news_app/core/widgets/custom_app_bar.dart';
+import 'package:news_app/widgets/custom_app_bar.dart';
 import 'package:news_app/model/article_model.dart';
 import 'package:news_app/screens/web_view_article_screen.dart';
 
@@ -15,9 +14,10 @@ class ArticleDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar(),
+      backgroundColor: AppColors.grey,
       body: Padding(
         padding: const EdgeInsets.all(20),
-        child: Column(
+        child: ListView(
           children: [
             Card(
               child: Column(
@@ -54,18 +54,24 @@ class ArticleDetailsScreen extends StatelessWidget {
                         Text(
                           articleModel.title,
                           style: const TextStyle(
-                              fontSize: 23, color: AppColors.titleColor),
+                            fontSize: 23,
+                            color: AppColors.titleColor,
+                          ),
                         ),
                         Text(
                           articleModel.author,
                           style: const TextStyle(
-                              fontSize: 18, color: AppColors.black54),
+                            fontSize: 18,
+                            color: AppColors.black54,
+                          ),
                         ),
                         verticalSpace(20),
                         Text(
                           articleModel.description,
                           style: const TextStyle(
-                              fontSize: 18, color: AppColors.black54),
+                            fontSize: 18,
+                            color: AppColors.black54,
+                          ),
                         )
                       ],
                     ),

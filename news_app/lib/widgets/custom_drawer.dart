@@ -32,7 +32,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: Column(
+      width: MediaQuery.of(context).size.width * 0.7,
+      child: ListView(
         children: [
           const Padding(
             padding: EdgeInsets.only(left: 40, top: 60, right: 30),

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 SizedBox verticalSpace(double height) {
   return SizedBox(
-    height: height,
+    height: height.h,
   );
 }
 
 SizedBox horizontalSpace(double width) {
   return SizedBox(
-    width: width,
+    width: width.w,
   );
 }
