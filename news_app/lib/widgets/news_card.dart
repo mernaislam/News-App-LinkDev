@@ -34,11 +34,12 @@ class NewsCard extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             FadeInImage(
-              placeholder: AssetImage(
+              placeholder: const AssetImage(
                 AppAssets.placeholderImage,
               ),
               image: NetworkImage(
-                "https://cors-anywhere.herokuapp.com/${articleModel.image}",
+                // "https://cors-anywhere.herokuapp.com/${articleModel.image}",
+                "${articleModel.image}",
               ),
               height: 260,
               width: double.infinity,

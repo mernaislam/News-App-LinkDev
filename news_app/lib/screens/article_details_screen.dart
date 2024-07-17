@@ -28,7 +28,8 @@ class ArticleDetailsScreen extends StatelessWidget {
                     children: [
                       Image(
                         image: NetworkImage(
-                          "https://cors-anywhere.herokuapp.com/${articleModel.image}",
+                          // "https://cors-anywhere.herokuapp.com/${articleModel.image}",
+                          "${articleModel.image}",
                         ),
                         height: 250.sp,
                         width: double.infinity,
@@ -88,7 +89,8 @@ class ArticleDetailsScreen extends StatelessWidget {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) => WebViewArticleScreen(
-                        articleUrl:  "https://cors-anywhere.herokuapp.com/${articleModel.webUrl}",
+                        // articleUrl:  "https://cors-anywhere.herokuapp.com/${articleModel.webUrl}",
+                        articleUrl:  "${articleModel.webUrl}",
                       ),
                     ),
                   );
