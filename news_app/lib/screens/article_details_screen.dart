@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/core/helpers/spacing.dart';
 import 'package:news_app/core/theme/app_colors.dart';
 import 'package:news_app/widgets/custom_app_bar.dart';
@@ -27,9 +28,9 @@ class ArticleDetailsScreen extends StatelessWidget {
                     children: [
                       Image(
                         image: NetworkImage(
-                          articleModel.image,
+                          "https://cors-anywhere.herokuapp.com/${articleModel.image}",
                         ),
-                        height: 250,
+                        height: 250.sp,
                         width: double.infinity,
                         fit: BoxFit.cover,
                       ),
@@ -86,8 +87,9 @@ class ArticleDetailsScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) =>
-                          WebViewArticleScreen(articleUrl: articleModel.webUrl),
+                      builder: (context) => WebViewArticleScreen(
+                        articleUrl:  "https://cors-anywhere.herokuapp.com/${articleModel.webUrl}",
+                      ),
                     ),
                   );
                 },

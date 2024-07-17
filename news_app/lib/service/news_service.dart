@@ -4,7 +4,7 @@ import 'package:news_app/model/article_model.dart';
 class NewsService {
   final Dio dio;
   final String baseUrl = 'https://newsapi.org';
-  final String apiKey = 'f3692a3d686e4deb88d2b4981c22fd95';
+  final String apiKey = '0cd37b395ff7489fa58cbc9aaf6f85ca';
 
   const NewsService(this.dio);
 
