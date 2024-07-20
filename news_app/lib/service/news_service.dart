@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:news_app/model/article_model.dart';
 
@@ -29,7 +31,8 @@ class NewsService {
       }
       return articlesList;
     } catch (e){
-      throw Exception();
+      log(e.toString());
+      throw Exception(e.toString());
     }
   }
 }

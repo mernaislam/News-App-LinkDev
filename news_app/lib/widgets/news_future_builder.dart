@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:news_app/model/article_model.dart';
 import 'package:news_app/service/news_service.dart';
 import 'package:news_app/widgets/grid_view_builder.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:news_app/widgets/news_failed.dart';
 
 class NewsFutureBuilder extends StatefulWidget {
   const NewsFutureBuilder({super.key});
@@ -16,34 +15,36 @@ class NewsFutureBuilder extends StatefulWidget {
 class _NewsFutureBuilderState extends State<NewsFutureBuilder> {
   late Future<List<ArticleModel>> _articles;
 
+  Future<void> _onRefresh() async {
+    setState(() {
+      _articles = NewsService(Dio()).getNews();
+    });
+    await _articles;
+  }
+
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     _articles = NewsService(Dio()).getNews();
     setState(() {});
   }
+
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
+    return RefreshIndicator(
+      onRefresh: _onRefresh,
+      child: FutureBuilder(
         future: _articles,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return GridViewBuilder( // adaptive based on the screen size
+            return GridViewBuilder(
+              // adaptive based on the screen size
               articles: snapshot.data ?? [],
             );
           }
           if (snapshot.hasError) {
-            return Center(
-              child: Text(
-                'There is an error rendering data,\n try again later',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 25.sp,
-                ),
-              ),
-            );
+            return NewsFailed(onRefresh: _onRefresh);
           }
           return const Center(
             child: CircularProgressIndicator(
@@ -51,6 +52,7 @@ class _NewsFutureBuilderState extends State<NewsFutureBuilder> {
             ),
           );
         },
-      );
+      ),
+    );
   }
 }
