@@ -12,30 +12,27 @@ class CustomDrawer extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     ref.watch(drawerItems); 
     final drawerProv = ref.read(drawerItems.notifier);
-    return Drawer(
-      width: MediaQuery.of(context).size.width * 0.7,
-      child: ListView(
-        children: [
-          const Padding(
-            padding: EdgeInsets.only(
-              left: 40,
-              top: 60,
-              right: 30,
-            ),
-            child: CustomDrawerHeader(),
+    return ListView(
+      children: [
+        const Padding(
+          padding: EdgeInsets.only(
+            left: 40,
+            top: 60,
+            right: 30,
           ),
-          verticalSpace(30),
-          for (var item in ref.read(drawerItems))
-            DrawerItem(
-              icon: item.icon,
-              title: item.name,
-              selected: item.selected,
-              onTap: () {
-                drawerProv.toggleState(item.name);
-              },
-            ),
-        ],
-      ),
+          child: CustomDrawerHeader(),
+        ),
+        verticalSpace(30),
+        for (var item in ref.read(drawerItems))
+          DrawerItem(
+            icon: item.icon,
+            title: item.name,
+            selected: item.selected,
+            onTap: () {
+              drawerProv.toggleState(item.name);
+            },
+          ),
+      ],
     );
   }
 }

@@ -8,22 +8,38 @@ import 'package:news_app/widgets/news_future_builder.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
+  final screenSize70 = 0.7;
+  final quarterScreenSize = 0.25;
+
   @override
   Widget build(BuildContext context) {
-    const mobileTabletLayout = Scaffold(
-      appBar: CustomAppBar(),
+    var mobileTabletLayout = Scaffold(
+      appBar: const CustomAppBar(),
       backgroundColor: AppColors.grey,
-      drawer: CustomDrawer(),
-      body: NewsFutureBuilder(),
+      drawer: Drawer(
+        width: MediaQuery.of(context).size.width * screenSize70,
+        child: const CustomDrawer(),
+      ),
+      body: const NewsFutureBuilder(),
     );
 
     return AdaptiveLayout(
       tabletLayout: (context) => mobileTabletLayout,
       mobileLayout: (context) => mobileTabletLayout,
-      desktopLayout: (context) => const Scaffold(
-        appBar: CustomAppBar(),
+      desktopLayout: (context) => Scaffold(
+        appBar: const CustomAppBar(),
         backgroundColor: AppColors.grey,
-        body: NewsFutureBuilder(),
+        body: Row(
+          children: [
+            SizedBox(
+              width: MediaQuery.of(context).size.width * quarterScreenSize,
+              child: const CustomDrawer(),
+            ),
+            const Expanded(
+              child: NewsFutureBuilder(),
+            )
+          ],
+        ),
       ),
     );
   }
