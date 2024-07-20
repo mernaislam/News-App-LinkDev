@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/core/helpers/app_assets.dart';
+import 'package:news_app/core/helpers/app_strings.dart';
 import 'package:news_app/core/theme/app_colors.dart';
 
 class CustomDrawerHeader extends StatelessWidget {
@@ -18,7 +19,7 @@ class CustomDrawerHeader extends StatelessWidget {
         ),
       ),
       title: Text(
-        'Welcome',
+        AppStrings.welcome,
         style: TextStyle(
           color: AppColors.black54,
           fontSize: 14,

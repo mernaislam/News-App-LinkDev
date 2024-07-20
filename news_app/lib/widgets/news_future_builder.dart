@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/model/article_model.dart';
 import 'package:news_app/service/news_service.dart';
@@ -17,7 +16,7 @@ class _NewsFutureBuilderState extends State<NewsFutureBuilder> {
 
   Future<void> _onRefresh() async {
     setState(() {
-      _articles = NewsService(Dio()).getNews();
+      _articles = NewsService().getNews();
     });
     await _articles;
   }
@@ -26,7 +25,7 @@ class _NewsFutureBuilderState extends State<NewsFutureBuilder> {
   void initState() {
     super.initState();
 
-    _articles = NewsService(Dio()).getNews();
+    _articles = NewsService().getNews();
     setState(() {});
   }
 

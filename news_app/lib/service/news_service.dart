@@ -4,11 +4,11 @@ import 'package:dio/dio.dart';
 import 'package:news_app/model/article_model.dart';
 
 class NewsService {
-  final Dio dio;
+  final Dio dio = Dio();
   final String baseUrl = 'https://newsapi.org';
-  final String apiKey = '0cd37b395ff7489fa58cbc9aaf6f85ca';
+  final String apiKey = '1c0f731cca954a13875e6965f9c7e9de';
 
-  const NewsService(this.dio);
+  NewsService();
 
   Future<List<ArticleModel>> getNews() async {
     try {
