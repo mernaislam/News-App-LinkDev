@@ -1,7 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:news_app/core/helpers/app_assets.dart';
 import 'package:news_app/core/helpers/spacing.dart';
 import 'package:news_app/core/theme/app_colors.dart';
+import 'package:news_app/widgets/card_asset_image.dart';
 import 'package:news_app/widgets/custom_app_bar.dart';
 import 'package:news_app/model/article_model.dart';
 import 'package:news_app/screens/web_view_article_screen.dart';
@@ -26,10 +29,15 @@ class ArticleDetailsScreen extends StatelessWidget {
                   Stack(
                     alignment: Alignment.bottomLeft,
                     children: [
-                      Image(
-                        image: NetworkImage(
-                          // "https://cors-anywhere.herokuapp.com/${articleModel.image}",
-                          "${articleModel.image}",
+                      CachedNetworkImage(
+                        imageUrl: articleModel.image,
+                        placeholder: (context, url) => CardAssetImage(
+                          image: AppAssets.placeholderImage,
+                          height: 250.sp,
+                        ),
+                        errorWidget: (context, url, error) => CardAssetImage(
+                          image: AppAssets.errorImage,
+                          height: 250.sp,
                         ),
                         height: 250.sp,
                         width: double.infinity,
@@ -90,7 +98,7 @@ class ArticleDetailsScreen extends StatelessWidget {
                     MaterialPageRoute(
                       builder: (context) => WebViewArticleScreen(
                         // articleUrl:  "https://cors-anywhere.herokuapp.com/${articleModel.webUrl}",
-                        articleUrl:  "${articleModel.webUrl}",
+                        articleUrl: "${articleModel.webUrl}",
                       ),
                     ),
                   );

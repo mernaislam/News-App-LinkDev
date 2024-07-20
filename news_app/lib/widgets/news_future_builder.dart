@@ -14,7 +14,7 @@ class NewsFutureBuilder extends StatefulWidget {
 }
 
 class _NewsFutureBuilderState extends State<NewsFutureBuilder> {
-Future<List<ArticleModel>>? _articles;
+  late Future<List<ArticleModel>> _articles;
 
   @override
   void initState() {
@@ -31,7 +31,7 @@ Future<List<ArticleModel>>? _articles;
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return GridViewBuilder( // adaptive based on the screen size
-              articles: snapshot.data!,
+              articles: snapshot.data ?? [],
             );
           }
           if (snapshot.hasError) {
