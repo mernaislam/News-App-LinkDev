@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,11 +10,19 @@ import 'package:news_app/widgets/card_asset_image.dart';
 import 'package:news_app/widgets/custom_app_bar.dart';
 import 'package:news_app/model/article_model.dart';
 import 'package:news_app/screens/web_view_article_screen.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ArticleDetailsScreen extends StatelessWidget {
   const ArticleDetailsScreen({super.key, required this.articleModel});
 
   final ArticleModel articleModel;
+
+  _launchURL(String link) async {
+    final Uri url = Uri.parse(link);
+    if (!await launchUrl(url)) {
+          throw Exception('Could not launch $url');
+      }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +30,7 @@ class ArticleDetailsScreen extends StatelessWidget {
       appBar: const CustomAppBar(),
       backgroundColor: AppColors.grey,
       body: Padding(
-        padding: const EdgeInsets.all(20),
+        padding: EdgeInsets.all(20.sp),
         child: ListView(
           children: [
             Card(
@@ -94,14 +104,17 @@ class ArticleDetailsScreen extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => WebViewArticleScreen(
-                        // articleUrl:  "https://cors-anywhere.herokuapp.com/${articleModel.webUrl}",
-                        articleUrl: "${articleModel.webUrl}",
+                  if(kIsWeb){
+                    _launchURL(articleModel.webUrl);
+                  } else {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => WebViewArticleScreen(
+                          articleUrl: articleModel.webUrl,
+                        ),
                       ),
-                    ),
-                  );
+                    );
+                  }
                 },
                 style: ElevatedButton.styleFrom(
                   foregroundColor: AppColors.white,
