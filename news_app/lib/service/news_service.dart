@@ -20,14 +20,7 @@ class NewsService {
 
       List<ArticleModel> articlesList = [];
       for (var article in articles) {
-        if (article['author'] != null &&
-            article['urlToImage'] != null &&
-            article['title'] != null &&
-            article['description'] != null &&
-            article['url'] != null && 
-            article['publishedAt'] != null) {
-          articlesList.add(ArticleModel.fromJSON(article));
-        }
+        articlesList.add(ArticleModel.fromJSON(article));
       }
       return articlesList;
     } catch (e){

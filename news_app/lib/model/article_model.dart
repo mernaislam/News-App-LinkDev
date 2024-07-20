@@ -1,4 +1,8 @@
 import 'package:intl/intl.dart';
+import 'package:news_app/core/helpers/api_keys.dart';
+
+const noImage = 'https://media.istockphoto.com/id/1452662817/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=bGI_FngX0iexE3EBANPw9nbXkrJJA4-dcEJhCrP8qMw=';
+const noUrl = 'https://http.cat/404';
 
 class ArticleModel {
   final String image;
@@ -18,16 +22,20 @@ class ArticleModel {
   });
 
   factory ArticleModel.fromJSON(json) {
-    DateTime dateTime = DateTime.parse(json['publishedAt']);
-    DateFormat formatter = DateFormat('MMMM, dd yyyy');
-    String formattedDate = formatter.format(dateTime);
+    var temp = DateTime.tryParse(json[ArticleApiKeys.datePublished]);
+    String? formattedDate;
+    if(temp != null) {
+      DateTime dateTime = temp;
+      DateFormat formatter = DateFormat('MMMM, dd yyyy');
+      formattedDate = formatter.format(dateTime);
+    }
     return ArticleModel(
-      image: json['urlToImage'],
-      author: json['author'],
-      title: json['title'],
-      description: json['description'],
-      webUrl: json['url'],
-      datePublished: formattedDate,
+      image: json[ArticleApiKeys.image] ?? noImage,
+      author: json[ArticleApiKeys.author] ?? 'Unknown',
+      title: json[ArticleApiKeys.title] ?? 'No title',
+      description: json[ArticleApiKeys.description] ?? 'No description',
+      webUrl: json[ArticleApiKeys.webUrl] ?? noUrl,
+      datePublished: formattedDate ?? 'No date available',
     );
   }
 }
