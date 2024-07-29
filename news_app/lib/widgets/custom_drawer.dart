@@ -10,7 +10,6 @@ class CustomDrawer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.watch(drawerItems); 
     return ListView(
       children: [
         const Padding(
