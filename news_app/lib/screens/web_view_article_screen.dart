@@ -40,13 +40,12 @@ class _WebViewArticleScreenState extends State<WebViewArticleScreen> {
           WebViewWidget(
             controller: _controller,
           ),
-          _isLoading
-              ? const Center(
-                  child: CircularProgressIndicator(
-                    color: Colors.black,
-                  ),
-                )
-              : const SizedBox(),
+          if (_isLoading)
+            const Center(
+              child: CircularProgressIndicator(
+                color: Colors.black,
+              ),
+            )
         ],
       ),
     );

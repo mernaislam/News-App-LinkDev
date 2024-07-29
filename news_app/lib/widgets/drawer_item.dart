@@ -17,18 +17,18 @@ class DrawerItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 2),
+     return Padding(
+      padding: const EdgeInsetsDirectional.only(start: 2, top: 30),
       child: ListTile(
-        contentPadding: const EdgeInsets.only(top: 30),
         leading: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            selected? Image.asset(
-              AppAssets.selectedIcon,
-              height: 50,
-            ) : const SizedBox(),
-            horizontalSpace(40),
+            if (selected)
+              Image.asset(
+                AppAssets.selectedIcon,
+                height: 50,
+              ),
+            horizontalSpace(10),
             ImageIcon(
               AssetImage(
                 icon,
