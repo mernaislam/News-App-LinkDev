@@ -5,13 +5,18 @@ import 'package:news_app/model/article_model.dart';
 import 'package:news_app/service/news_service.dart';
 import 'package:news_app/widgets/grid_view_builder.dart';
 import 'package:news_app/widgets/news_failed.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 final dioProvider = Provider<Dio>(
-  (_) => Dio(
-    BaseOptions(
-      baseUrl: 'https://newsapi.org',
-    ),
-  ),
+  (_) {
+    final dio = Dio(
+      BaseOptions(
+        baseUrl: 'https://newsapi.org',
+      ),
+    );
+    dio.interceptors.add(PrettyDioLogger());
+    return dio;
+  },
 );
 
 final getNewsFutureProvider = FutureProvider<List<ArticleModel>>(

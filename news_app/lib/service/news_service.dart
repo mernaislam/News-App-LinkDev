@@ -1,14 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:news_app/model/article_model.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class NewsService {
   final Dio dio;
   final String apiKey = '1c0f731cca954a13875e6965f9c7e9de';
 
-  NewsService({required this.dio}){
-    dio.interceptors.add(PrettyDioLogger());
-  }
+  const NewsService({required this.dio});
 
   Future<List<ArticleModel>> getNews() async {
     try {
