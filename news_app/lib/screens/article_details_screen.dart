@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/foundation.dart' show kIsWeb;
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -104,7 +106,7 @@ class ArticleDetailsScreen extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  if(kIsWeb){
+                  if(kIsWeb || Platform.isMacOS){
                     _launchURL(articleModel.webUrl);
                   } else {
                     Navigator.of(context).push(
