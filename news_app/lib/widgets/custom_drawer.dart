@@ -10,7 +10,7 @@ class CustomDrawer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // ref.watch(drawerItems); 
+    ref.watch(drawerItems); 
     return ListView(
       children: [
         const Padding(
@@ -22,15 +22,13 @@ class CustomDrawer extends ConsumerWidget {
           child: CustomDrawerHeader(),
         ),
         verticalSpace(30),
-        // for (var item in ref.read(drawerItems))
-        for (var item in drawerItems)
+        for (var item in ref.read(drawerItems))
           DrawerItem(
             icon: item.icon,
             title: item.name,
             selected: ref.watch(currentSelectedDrawerItem) == item.id,
             onTap: () {
-              // ref.read(currentSelectedDrawerItem.notifier).state = item.id;
-              ref.read(currentSelectedDrawerItem.notifier).setId(item.id);
+              ref.read(currentSelectedDrawerItem.notifier).state = item.id;
             },
           ),
       ],
